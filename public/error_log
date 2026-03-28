@@ -1,0 +1,96 @@
+[15-Jan-2026 12:48:51 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[15-Jan-2026 12:48:51 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[15-Jan-2026 12:48:55 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[15-Jan-2026 12:48:55 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[15-Jan-2026 12:48:57 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[15-Jan-2026 12:48:57 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[15-Jan-2026 12:48:59 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../livewire/livewire/src/helpers.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[15-Jan-2026 12:48:59 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../livewire/livewire/src/helpers.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:43:25 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:43:25 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:43:28 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:43:28 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:43:31 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:43:31 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:44:02 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:44:02 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:44:03 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:44:03 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:46:57 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:46:57 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:58:40 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:58:40 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:58:43 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:58:43 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/public/index.php(14): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41

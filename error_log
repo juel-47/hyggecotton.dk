@@ -1,0 +1,8 @@
+[10-Mar-2026 04:43:56 UTC] PHP Warning:  require(/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
+[10-Mar-2026 04:43:56 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/hyggznzm/public_html/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/hyggznzm/public_html/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/hyggznzm/public_html/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/hyggznzm/public_html/vendor/autoload.php(22): ComposerAutoloaderInit9f5b8faf82cb34673d9dd1dfebf3e93a::getLoader()
+#2 /home/hyggznzm/public_html/artisan(10): require('/home/hyggznzm/...')
+#3 {main}
+  thrown in /home/hyggznzm/public_html/vendor/composer/autoload_real.php on line 41
