@@ -45,66 +45,81 @@
         }
 
         .logo-section h1 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--color-cream);
-            letter-spacing: -0.02em;
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--color-red);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.25rem;
         }
 
         .logo-section p {
             color: var(--color-gray);
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.9;
         }
 
         .input-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
+            text-align: left;
         }
 
         .input-group label {
             display: block;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             color: var(--color-gray);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.625rem;
+            padding-left: 0.25rem;
         }
 
         .input-wrapper {
             position: relative;
+            background: #1e1c16;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(222, 216, 198, 0.1);
         }
 
-        .input-wrapper i {
+        .input-wrapper:focus-within {
+            border-color: var(--color-red);
+            box-shadow: 0 0 0 4px rgba(230, 82, 55, 0.15);
+            background: #23211a;
+        }
+
+        .input-wrapper i.field-icon {
             position: absolute;
             left: 1.25rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--color-gray);
-            font-size: 1rem;
+            font-size: 1.1rem;
             pointer-events: none;
             transition: color 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .input-wrapper:focus-within i.field-icon {
+            color: var(--color-red);
+            opacity: 1;
         }
 
         .custom-input {
             width: 100%;
-            background: #28261e;
-            border: 1px solid rgba(222, 216, 198, 0.15);
+            background: transparent;
+            border: none;
             border-radius: 12px;
-            padding: 0.875rem 1rem 0.875rem 3.25rem;
+            padding: 1rem 1rem 1rem 3.5rem;
             color: var(--color-cream);
             font-size: 1rem;
-            transition: all 0.3s ease;
             outline: none;
+            display: block;
         }
 
-        .custom-input:focus {
-            border-color: var(--color-red);
-            box-shadow: 0 0 0 3px rgba(230, 82, 55, 0.2);
-        }
-
-        .custom-input:focus + i {
-            color: var(--color-red);
+        .custom-input::placeholder {
+            color: rgba(222, 216, 198, 0.3);
         }
 
         .password-toggle {
@@ -114,14 +129,26 @@
             transform: translateY(-50%);
             cursor: pointer;
             color: var(--color-gray);
+            opacity: 0.5;
+            transition: all 0.2s ease;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .password-toggle:hover {
+            color: var(--color-cream);
+            opacity: 1;
         }
 
         .options-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 2rem;
-            font-size: 0.875rem;
+            margin-bottom: 2.25rem;
+            font-size: 0.9rem;
+            padding: 0 0.25rem;
         }
 
         .remember-me {
@@ -129,20 +156,30 @@
             align-items: center;
             color: var(--color-gray);
             cursor: pointer;
+            user-select: none;
         }
 
         .remember-me input {
-            margin-right: 0.5rem;
+            width: 1.1rem;
+            height: 1.1rem;
+            margin-right: 0.75rem;
+            background: #1e1c16;
+            border: 1px solid rgba(222, 216, 198, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
             accent-color: var(--color-red);
         }
 
         .forgot-pass-link {
-            color: var(--color-yellow);
+            color: var(--color-red);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            opacity: 0.9;
         }
 
         .forgot-pass-link:hover {
+            opacity: 1;
             text-decoration: underline;
         }
 
@@ -152,41 +189,53 @@
             color: white;
             border: none;
             border-radius: 12px;
-            padding: 1rem;
-            font-size: 1rem;
+            padding: 1.125rem;
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            box-shadow: 0 4px 12px rgba(230, 82, 55, 0.2);
         }
 
         .submit-btn:hover {
-            filter: brightness(1.1);
-            transform: translateY(-1px);
-            box-shadow: 0 8px 15px rgba(230, 82, 55, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(230, 82, 55, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
         }
 
         .error-box {
             background: rgba(230, 82, 55, 0.1);
             border: 1px solid rgba(230, 82, 55, 0.2);
             color: #ff8c7a;
-            padding: 0.75rem;
-            border-radius: 8px;
+            padding: 0.875rem;
+            border-radius: 10px;
             margin-bottom: 1.5rem;
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .error-box i {
+            font-size: 1rem;
         }
 
         .status-box {
             background: rgba(255, 221, 85, 0.1);
             border: 1px solid rgba(255, 221, 85, 0.2);
             color: var(--color-yellow);
-            padding: 0.75rem;
-            border-radius: 8px;
+            padding: 0.875rem;
+            border-radius: 10px;
             margin-bottom: 1.5rem;
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
         }
     </style>
 </head>
@@ -210,7 +259,7 @@
             <div class="input-group">
                 <label for="email">E-Mail Address</label>
                 <div class="input-wrapper">
-                    <i class="fas fa-user-circle"></i>
+                    <i class="fas fa-user-circle field-icon"></i>
                     <input 
                         id="email" 
                         class="custom-input" 
@@ -231,7 +280,7 @@
             <div class="input-group">
                 <label for="password">Password</label>
                 <div class="input-wrapper">
-                    <i class="fas fa-lock"></i>
+                    <i class="fas fa-lock field-icon"></i>
                     <input 
                         id="password" 
                         class="custom-input" 

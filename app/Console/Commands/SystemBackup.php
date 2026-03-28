@@ -44,37 +44,56 @@ class SystemBackup extends Command
         
         $sqlFile = "{$backupPath}/database_backup.sql";
         
-        // Use mysqldump if available
-        $command = "mysqldump --user={$dbUser} --password='{$dbPass}' --host={$dbHost} {$dbName} > {$sqlFile}";
+        // Get mysqldump path from env or default to "mysqldump"
+        $dumpBinary = env('MYSQLDUMP_PATH', 'mysqldump');
         
-        $output = [];
-        $returnVar = null;
-        exec($command, $output, $returnVar);
+        // Use fromShellCommandline to allow output redirection (>) securely
+        $command = sprintf(
+            '%s --user=%s --password=%s --host=%s %s > %s',
+            $dumpBinary, // External binary path
+            escapeshellarg($dbUser),
+            escapeshellarg($dbPass),
+            escapeshellarg($dbHost),
+            escapeshellarg($dbName),
+            escapeshellarg($sqlFile)
+        );
 
-        if ($returnVar === 0) {
+        $process = \Symfony\Component\Process\Process::fromShellCommandline($command);
+        $process->setTimeout(300); // 5 minutes timeout
+        $process->run();
+
+        if ($process->isSuccessful()) {
             $this->info('Database backed up to: ' . $sqlFile);
         } else {
-            $this->error('Database backup failed. Ensure mysqldump is installed and credentials are correct.');
+            $errorOutput = $process->getErrorOutput();
+            $this->error('Database backup failed.');
+            $this->error('Error signal: ' . ($errorOutput ?: 'Unknown error'));
+            $this->line('Command tried: ' . $process->getCommandLine());
+            $this->info('TIP: If "mysqldump" is not found, set MYSQLDUMP_PATH in your .env file to the full path of the binary.');
         }
 
         // 2. Image Backup (Zipping uploads folder)
-        $zipFile = "{$backupPath}/images_backup.zip";
-        $zip = new ZipArchive();
-        
-        if ($zip->open($zipFile, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-            $uploadsPath = public_path('uploads');
-            if (File::exists($uploadsPath)) {
-                $files = File::allFiles($uploadsPath);
-                foreach ($files as $file) {
-                    $zip->addFile($file->getRealPath(), 'uploads/' . $file->getRelativePathname());
-                }
-                $zip->close();
-                $this->info('Images backed up to: ' . $zipFile);
-            } else {
-                $this->warn('Uploads folder not found. Skipping image backup.');
-            }
+        if (!class_exists('ZipArchive')) {
+            $this->error('PHP ZipArchive extension is not installed. Skipping image backup.');
         } else {
-            $this->error('Failed to create Image ZIP');
+            $zipFile = "{$backupPath}/images_backup.zip";
+            $zip = new ZipArchive();
+            
+            if ($zip->open($zipFile, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+                $uploadsPath = public_path('uploads');
+                if (File::exists($uploadsPath)) {
+                    $files = File::allFiles($uploadsPath);
+                    foreach ($files as $file) {
+                        $zip->addFile($file->getRealPath(), 'uploads/' . $file->getRelativePathname());
+                    }
+                    $zip->close();
+                    $this->info('Images backed up to: ' . $zipFile);
+                } else {
+                    $this->warn('Uploads folder not found. Skipping image backup.');
+                }
+            } else {
+                $this->error('Failed to create Image ZIP');
+            }
         }
 
         $this->info('Backup process completed.');

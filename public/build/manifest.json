@@ -1,16 +1,16 @@
 {
-  "_utils-BkGLGEyN.js": {
-    "file": "assets/utils-BkGLGEyN.js",
+  "_utils-B7h6hK5Q.js": {
+    "file": "assets/utils-B7h6hK5Q.js",
     "name": "utils",
     "imports": [
-      "_vendor-Bk6sbLR4.js"
+      "_vendor-8SU-oHPY.js"
     ]
   },
-  "_vendor-Bk6sbLR4.js": {
-    "file": "assets/vendor-Bk6sbLR4.js",
+  "_vendor-8SU-oHPY.js": {
+    "file": "assets/vendor-8SU-oHPY.js",
     "name": "vendor",
     "imports": [
-      "_utils-BkGLGEyN.js"
+      "_utils-B7h6hK5Q.js"
     ]
   },
   "node_modules/slick-carousel/slick/ajax-loader.gif": {
@@ -34,7 +34,7 @@
     "src": "node_modules/slick-carousel/slick/fonts/slick.woff"
   },
   "resources/css/app.css": {
-    "file": "assets/app-D0TA9-3L.css",
+    "file": "assets/app-CVcyls_p.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -67,16 +67,16 @@
     "src": "resources/fonts/telegraph.otf"
   },
   "resources/js/app.jsx": {
-    "file": "assets/app-BmzkwM_0.js",
+    "file": "assets/app-CZ6ezi8R.js",
     "name": "app",
     "src": "resources/js/app.jsx",
     "isEntry": true,
     "imports": [
-      "_vendor-Bk6sbLR4.js",
-      "_utils-BkGLGEyN.js"
+      "_vendor-8SU-oHPY.js",
+      "_utils-B7h6hK5Q.js"
     ],
     "css": [
-      "assets/app-CXmzAuEf.css"
+      "assets/app-CxXu5-aM.css"
     ],
     "assets": [
       "assets/ajax-loader-BcnMEykj.gif",

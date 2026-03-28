@@ -41,71 +41,94 @@
 
         .header-section {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.25rem;
         }
 
         .header-section i {
-            font-size: 2.5rem;
-            color: var(--color-yellow);
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            color: var(--color-red);
+            margin-bottom: 1.25rem;
+            filter: drop-shadow(0 4px 12px rgba(230, 82, 55, 0.2));
         }
 
         .header-section h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.75rem;
+            font-weight: 800;
             color: var(--color-cream);
             margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
         }
 
         .header-section p {
             color: var(--color-gray);
-            font-size: 0.875rem;
-            line-height: 1.5;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            max-width: 320px;
+            margin: 0 auto;
         }
 
         .input-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
         }
 
         .input-group label {
             display: block;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             color: var(--color-gray);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.625rem;
+            padding-left: 0.25rem;
         }
 
         .input-wrapper {
             position: relative;
+            background: #1e1c16;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(222, 216, 198, 0.1);
         }
 
-        .input-wrapper i {
+        .input-wrapper:focus-within {
+            border-color: var(--color-red);
+            box-shadow: 0 0 0 4px rgba(230, 82, 55, 0.15);
+            background: #23211a;
+        }
+
+        .input-wrapper i.field-icon {
             position: absolute;
-            left: 1.125rem;
+            left: 1.25rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--color-gray);
-            font-size: 1rem;
+            font-size: 1.1rem;
             pointer-events: none;
+            transition: color 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .input-wrapper:focus-within i.field-icon {
+            color: var(--color-red);
+            opacity: 1;
         }
 
         .custom-input {
             width: 100%;
-            background: #28261e;
-            border: 1px solid rgba(222, 216, 198, 0.15);
+            background: transparent;
+            border: none;
             border-radius: 12px;
-            padding: 0.875rem 1rem 0.875rem 3rem;
+            padding: 1rem 1rem 1rem 3.5rem;
             color: var(--color-cream);
             font-size: 1rem;
             outline: none;
-            transition: all 0.3s ease;
+            display: block;
         }
 
-        .custom-input:focus {
-            border-color: var(--color-red);
-            box-shadow: 0 0 0 3px rgba(230, 82, 55, 0.2);
+        .custom-input::placeholder {
+            color: rgba(222, 216, 198, 0.3);
         }
 
         .submit-btn {
@@ -114,54 +137,65 @@
             color: white;
             border: none;
             border-radius: 12px;
-            padding: 1rem;
-            font-size: 1rem;
+            padding: 1.125rem;
+            font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
+            box-shadow: 0 4px 12px rgba(230, 82, 55, 0.2);
         }
 
         .submit-btn:hover {
-            filter: brightness(1.1);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(230, 82, 55, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
         }
 
         .back-link {
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
             text-align: center;
             margin-top: 2rem;
             color: var(--color-gray);
             text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            gap: 0.5rem;
         }
 
         .back-link:hover {
-            color: var(--color-yellow);
+            color: var(--color-red);
         }
 
         .error-message {
             background: rgba(230, 82, 55, 0.1);
+            border: 1px solid rgba(230, 82, 55, 0.2);
             color: #ff8c7a;
-            padding: 0.75rem;
-            border-radius: 8px;
+            padding: 0.875rem;
+            border-radius: 10px;
             margin-bottom: 1.5rem;
-            font-size: 0.8125rem;
-            border: 1px solid rgba(230, 82, 55, 0.1);
+            font-size: 0.875rem;
         }
 
         .status-message {
             background: rgba(255, 221, 85, 0.1);
+            border: 1px solid rgba(255, 221, 85, 0.2);
             color: var(--color-yellow);
-            padding: 0.75rem;
-            border-radius: 8px;
+            padding: 0.875rem;
+            border-radius: 10px;
             margin-bottom: 1.5rem;
-            font-size: 0.8125rem;
-            border: 1px solid rgba(255, 221, 85, 0.1);
+            font-size: 0.875rem;
         }
     </style>
 </head>
@@ -186,7 +220,7 @@
             <div class="input-group">
                 <label for="email">Admin Email</label>
                 <div class="input-wrapper">
-                    <i class="fas fa-envelope"></i>
+                    <i class="fas fa-envelope field-icon"></i>
                     <input 
                         id="email" 
                         class="custom-input" 
@@ -210,7 +244,7 @@
         </form>
 
         <a href="{{ route('admin.login') }}" class="back-link">
-            <i class="fas fa-arrow-left mr-2"></i> Back to Login
+            <i class="fas fa-arrow-left"></i> Back to Login
         </a>
     </div>
 </body>
