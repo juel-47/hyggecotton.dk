@@ -47,10 +47,14 @@ class SystemBackup extends Command
         // Get mysqldump path from env or default to "mysqldump"
         $dumpBinary = env('MYSQLDUMP_PATH', 'mysqldump');
         
-        // Use fromShellCommandline to allow output redirection (>) securely
+        // Wrap binary in quotes if it contains spaces (especially for Windows)
+        $binary = (str_contains($dumpBinary, ' ') && !str_starts_with($dumpBinary, '"')) 
+                  ? '"' . $dumpBinary . '"' 
+                  : $dumpBinary;
+
         $command = sprintf(
             '%s --user=%s --password=%s --host=%s %s > %s',
-            $dumpBinary, // External binary path
+            $binary,
             escapeshellarg($dbUser),
             escapeshellarg($dbPass),
             escapeshellarg($dbHost),
@@ -59,17 +63,15 @@ class SystemBackup extends Command
         );
 
         $process = \Symfony\Component\Process\Process::fromShellCommandline($command);
-        $process->setTimeout(300); // 5 minutes timeout
+        $process->setTimeout(600); 
         $process->run();
 
         if ($process->isSuccessful()) {
-            $this->info('Database backed up to: ' . $sqlFile);
+            $this->info('Database backed up successfully.');
         } else {
-            $errorOutput = $process->getErrorOutput();
             $this->error('Database backup failed.');
-            $this->error('Error signal: ' . ($errorOutput ?: 'Unknown error'));
-            $this->line('Command tried: ' . $process->getCommandLine());
-            $this->info('TIP: If "mysqldump" is not found, set MYSQLDUMP_PATH in your .env file to the full path of the binary.');
+            $this->line('Error: ' . $process->getErrorOutput());
+            $this->info('FIX: Set MYSQLDUMP_PATH in your .env file to the full path of mysqldump binary.');
         }
 
         // 2. Image Backup (Zipping uploads folder)

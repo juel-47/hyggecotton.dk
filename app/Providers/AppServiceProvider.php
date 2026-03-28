@@ -117,10 +117,18 @@ class AppServiceProvider extends ServiceProvider
                 ->uncompromised();
         });
 
-        // Register security listeners
+        // Register unified authentication security listeners
+        \Illuminate\Support\Facades\Event::listen(
+            \Illuminate\Auth\Events\Login::class,
+            [\App\Listeners\AuthEventListener::class, 'handleLogin']
+        );
         \Illuminate\Support\Facades\Event::listen(
             \Illuminate\Auth\Events\Failed::class,
-            \App\Listeners\LogFailedLogin::class
+            [\App\Listeners\AuthEventListener::class, 'handleFailed']
+        );
+        \Illuminate\Support\Facades\Event::listen(
+            \Illuminate\Auth\Events\Logout::class,
+            [\App\Listeners\AuthEventListener::class, 'handleLogout']
         );
     }
 }
