@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 
 class Product extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     // public function vendor()
     // {

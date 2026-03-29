@@ -134,7 +134,7 @@ class ProductController extends Controller
             // Image upload
             $path = public_path('uploads/image-gallery');
             if (!file_exists($path)) {
-                mkdir($path, 0777, true);
+                mkdir($path, 0755, true);
             }
 
             $ext = $imageFile->getClientOriginalExtension();

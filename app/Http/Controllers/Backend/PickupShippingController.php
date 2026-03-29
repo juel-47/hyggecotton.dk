@@ -31,7 +31,7 @@ class PickupShippingController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
             'store_name' => 'required|string|max:255',
             'address' => 'required|string',
@@ -39,9 +39,9 @@ class PickupShippingController extends Controller
             'phone' => 'nullable|string',
             'email' => 'nullable|email',
             'cost' => 'nullable|numeric',
+            'status' => 'nullable|boolean'
         ]);
 
-        $data = $request->all();
         $data['cost'] = $request->cost ?? 0;
 
         PickupShippingMethod::create($data);
@@ -73,7 +73,7 @@ class PickupShippingController extends Controller
     {
         $store = PickupShippingMethod::findOrFail($id);
 
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
             'store_name' => 'required|string|max:255',
             'address' => 'required|string',
@@ -81,10 +81,9 @@ class PickupShippingController extends Controller
             'phone' => 'nullable|string',
             'email' => 'nullable|email',
             'cost' => 'nullable|numeric',
+            'status' => 'nullable|boolean'
         ]);
 
-        // $store->update($request->all());
-         $data = $request->all();
         $data['cost'] = $request->cost ?? 0;
 
         $store->update($data);

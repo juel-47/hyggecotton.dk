@@ -39,13 +39,13 @@ class JobApplicationController extends Controller
         $uploadPath = public_path('uploads/applications');
 
         if (!file_exists($uploadPath)) {
-            mkdir($uploadPath, 0777, true);
+            mkdir($uploadPath, 0755, true);
         }
 
         // File upload
         if ($request->hasFile('resume')) {
             $file = $request->file('resume');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            $filename = time() . '_' . $file->hashName();
             $file->move($uploadPath, $filename);
 
             // Save relative path
@@ -58,7 +58,7 @@ class JobApplicationController extends Controller
             $videoUploadPath = public_path('uploads/video_cvs');
 
             if (!file_exists($videoUploadPath)) {
-                mkdir($videoUploadPath, 0777, true);
+                mkdir($videoUploadPath, 0755, true);
             }
 
             $video->move($videoUploadPath, $videoName);

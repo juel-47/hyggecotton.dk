@@ -98,8 +98,29 @@ class PromotionController extends Controller
     public function update(Request $request, string $id)
     {
         // dd($request->all());
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'type' => 'required|in:free_shipping,free_product',
+            'buy_quantity' => 'required|integer|min:1',
+            'get_quantity' => 'nullable|integer|min:0',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
+            'allow_coupon_stack' => 'required|boolean',
+            'status' => 'required|boolean',
+            'category_id' => 'nullable|exists:categories,id',
+            'product_id' => 'nullable|exists:products,id',
+        ]);
+
+        $data = $request->only([
+            'title', 'type', 'category_id', 'product_id', 
+            'buy_quantity', 'get_quantity', 'allow_coupon_stack', 'status'
+        ]);
+        
+        $data['start_date'] = $request->start_date ?: null;
+        $data['end_date'] = $request->end_date ?: null;
+
         $promotion = Promotion::findOrFail($id);
-        $promotion->update($request->all());
+        $promotion->update($data);
         Toastr::success('Promotion Updated Successfully!');
         return redirect()->route('admin.promotions.index');
     }

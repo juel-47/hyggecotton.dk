@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 
 class FooterSocial extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     protected static function booted()
     {

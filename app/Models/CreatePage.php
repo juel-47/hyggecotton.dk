@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 
 class CreatePage extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['id'];
     protected static function booted()
     {
         $refreshCache = function () {

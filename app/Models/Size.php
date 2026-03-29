@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 
 class Size extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['id'];
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_sizes');

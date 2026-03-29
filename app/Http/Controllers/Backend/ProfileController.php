@@ -28,7 +28,7 @@ class ProfileController extends Controller
                 File::delete(public_path($user->image));
             }
             $image = $request->image;
-            $imageName = rand() . '_' . $image->getClientOriginalName();
+            $imageName = $image->hashName();
             $image->move(public_path('uploads'), $imageName);
 
             $path = "/uploads/" . $imageName;

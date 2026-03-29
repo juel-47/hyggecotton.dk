@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 
 class Brand extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
 
     public function scopeActive($query)
