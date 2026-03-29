@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('otp_code', 6)->nullable()->after('password');
             $table->timestamp('otp_expires_at')->nullable()->after('otp_code');
             $table->timestamp('locked_until')->nullable()->after('otp_expires_at');
-            $table->boolean('is_2fa_enabled')->default(false)->after('status');
+            $table->boolean('is_2fa_enabled')->default(true)->after('status');
         });
     }
 
