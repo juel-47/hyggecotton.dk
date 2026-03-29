@@ -41,8 +41,23 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
+        $user = \App\Models\User::where('email', $this->email)->first();
+
+        // Check if account is manually locked via locked_until
+        if ($user && $user->isLocked()) {
+            throw ValidationException::withMessages([
+                'email' => 'This account is temporarily locked. Please try again in ' . $user->locked_until->diffForHumans() . '.',
+            ]);
+        }
+
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+            RateLimiter::hit($this->throttleKey(), 900); // 15 minutes = 900 seconds
+
+            if (RateLimiter::remaining($this->throttleKey(), 3) === 0) {
+                if ($user) {
+                    $user->update(['locked_until' => now()->addMinutes(15)]);
+                }
+            }
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
@@ -59,7 +74,7 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited(): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 3)) {
             return;
         }
 

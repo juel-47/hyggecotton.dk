@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
@@ -68,9 +69,19 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
+        $throttleKey = Str::lower($request->input('email')) . '|' . $request->ip();
+
+        if (RateLimiter::tooManyAttempts($throttleKey, 3)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+            return back()->withErrors([
+                'email' => 'Too many login attempts. Please try again in ' . ceil($seconds / 60) . ' minutes.',
+            ]);
+        }
+
         $customer = Customer::where('email', $request->email)->first();
 
         if (!$customer || !Hash::check($request->password, $customer->password)) {
+            RateLimiter::hit($throttleKey, 900); // 15-minute block
             return back()->withErrors(['email' => 'Invalid credentials']);
         }
 
@@ -88,6 +99,9 @@ class AuthController extends Controller
 
         // LOGIN
         Auth::guard('customer')->login($customer);
+
+        // Clear attempts on success
+        RateLimiter::clear($throttleKey);
 
         // ✅ MERGE using OLD session id
         $this->mergeGuestCartToUser($customer->id, $oldSessionId);

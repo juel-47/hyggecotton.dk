@@ -38,6 +38,10 @@ class User extends Authenticatable
         'password',
         'phone',
         'image',
+        'otp_code',
+        'otp_expires_at',
+        'locked_until',
+        'is_2fa_enabled',
     ];
 
     /**
@@ -60,7 +64,42 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'otp_expires_at' => 'datetime',
+            'locked_until' => 'datetime',
+            'is_2fa_enabled' => 'boolean',
         ];
+    }
+
+    /**
+     * Check if the account is temporarily locked.
+     */
+    public function isLocked(): bool
+    {
+        return $this->locked_until && $this->locked_until->isFuture();
+    }
+
+    /**
+     * Generate and save a new OTP code.
+     */
+    public function generateOtp(): string
+    {
+        $otp = sprintf("%06d", mt_rand(1, 999999));
+        $this->update([
+            'otp_code' => $otp,
+            'otp_expires_at' => now()->addMinutes(10), // OTP valid for 10 minutes
+        ]);
+        return $otp;
+    }
+
+    /**
+     * Clear the OTP code.
+     */
+    public function clearOtp(): void
+    {
+        $this->update([
+            'otp_code' => null,
+            'otp_expires_at' => null,
+        ]);
     }
     /** 
      * Get the role that owns the User

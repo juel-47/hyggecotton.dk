@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
@@ -42,6 +43,34 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+
+        // Register Google Drive Storage Driver
+        try {
+            Storage::extend('google', function ($app, $config) {
+                $options = [];
+
+                if (!empty($config['teamDriveId'] ?? null)) {
+                    $options['teamDriveId'] = $config['teamDriveId'];
+                }
+
+                if (!empty($config['sharedDriveId'] ?? null)) {
+                    $options['sharedDriveId'] = $config['sharedDriveId'];
+                }
+
+                $client = new \Google\Client();
+                $client->setClientId($config['clientId']);
+                $client->setClientSecret($config['clientSecret']);
+                $client->refreshToken($config['refreshToken']);
+
+                $service = new \Google\Service\Drive($client);
+                $adapter = new \Masbug\Flysystem\GoogleDriveAdapter($service, $config['folderId'] ?? '/', $options);
+                $driver = new \League\Flysystem\Filesystem($adapter);
+
+                return new \Illuminate\Filesystem\FilesystemAdapter($driver, $adapter, $config);
+            });
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error("Google Drive Storage extension failed: " . $e->getMessage());
+        }
 
         try {
             // Check if DB is reachable before doing anything
