@@ -20,7 +20,7 @@ return [
                 'include' => [
                     // base_path(),
                     // storage_path('app/public'),
-                    // base_path('public'),
+                    base_path('public/uploads'),
                 ],
 
                 /*
