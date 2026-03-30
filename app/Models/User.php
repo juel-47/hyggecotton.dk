@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 
 class User extends Authenticatable
@@ -39,6 +40,7 @@ class User extends Authenticatable
         'phone',
         'image',
         'otp_code',
+        'otp_hash',
         'otp_expires_at',
         'locked_until',
         'is_2fa_enabled',
@@ -83,12 +85,33 @@ class User extends Authenticatable
      */
     public function generateOtp(): string
     {
-        $otp = sprintf("%06d", mt_rand(1, 999999));
+        $otp = str_pad((string) random_int(0, 999999), 6, '0', STR_PAD_LEFT);
         $this->update([
-            'otp_code' => $otp,
+            'otp_code' => null,
+            'otp_hash' => Hash::make($otp),
             'otp_expires_at' => now()->addMinutes(10), // OTP valid for 10 minutes
         ]);
         return $otp;
+    }
+
+    /**
+     * Verify a provided OTP against stored hash (or legacy plain OTP).
+     */
+    public function verifyOtp(string $otp): bool
+    {
+        if (! $this->otp_expires_at || $this->otp_expires_at->isPast()) {
+            return false;
+        }
+
+        if ($this->otp_hash) {
+            return Hash::check($otp, $this->otp_hash);
+        }
+
+        if ($this->otp_code) {
+            return hash_equals($this->otp_code, $otp);
+        }
+
+        return false;
     }
 
     /**
@@ -98,6 +121,7 @@ class User extends Authenticatable
     {
         $this->update([
             'otp_code' => null,
+            'otp_hash' => null,
             'otp_expires_at' => null,
         ]);
     }

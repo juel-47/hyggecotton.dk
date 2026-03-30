@@ -87,7 +87,16 @@ class AuthenticatedSessionController extends Controller
         $userId = $request->session()->get('auth.otp_user_id');
         $user = User::findOrFail($userId);
 
-        if ($user->otp_code !== $request->otp || $user->otp_expires_at->isPast()) {
+        $throttleKey = $this->otpThrottleKey($request, $userId);
+        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+            return back()->withErrors([
+                'otp' => 'Too many attempts. Try again in ' . ceil($seconds / 60) . ' minutes.',
+            ]);
+        }
+        RateLimiter::hit($throttleKey, 600);
+
+        if (! $user->verifyOtp($request->otp)) {
             return back()->withErrors(['otp' => 'Invalid or expired OTP code.']);
         }
 
@@ -101,6 +110,7 @@ class AuthenticatedSessionController extends Controller
 
         // Clear rate limiter for this user/IP
         RateLimiter::clear(Str::transliterate(Str::lower($user->email).'|'.$request->ip()));
+        RateLimiter::clear($throttleKey);
 
         return redirect()->intended(route('admin.dashboard', absolute: false));
     }
@@ -117,10 +127,29 @@ class AuthenticatedSessionController extends Controller
         $userId = $request->session()->get('auth.otp_user_id');
         $user = User::findOrFail($userId);
 
+        $throttleKey = $this->otpResendThrottleKey($request, $userId);
+        if (RateLimiter::tooManyAttempts($throttleKey, 3)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+            return back()->withErrors([
+                'otp' => 'Too many resend attempts. Try again in ' . ceil($seconds / 60) . ' minutes.',
+            ]);
+        }
+        RateLimiter::hit($throttleKey, 600);
+
         $otp = $user->generateOtp();
         $user->notify(new OtpMail($otp));
 
         return back()->with('status', 'A new OTP code has been sent to your email.');
+    }
+
+    private function otpThrottleKey(Request $request, int $userId): string
+    {
+        return 'otp_verify|' . $userId . '|' . $request->ip();
+    }
+
+    private function otpResendThrottleKey(Request $request, int $userId): string
+    {
+        return 'otp_resend|' . $userId . '|' . $request->ip();
     }
 
     /**
