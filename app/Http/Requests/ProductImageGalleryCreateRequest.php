@@ -22,8 +22,8 @@ class ProductImageGalleryCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'image' => 'required|mimes:jpg,jpeg,png,webp,avif|max:1048',
-            'image' => 'required|file|mimes:jpg,jpeg,png,webp,avif|max:1048',
+            'image' => 'required|array',
+            'image.*' => 'required|file|mimes:jpg,jpeg,png,webp,avif|max:1048',
         ];
     }
 }

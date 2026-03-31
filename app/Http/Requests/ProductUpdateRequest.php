@@ -34,11 +34,19 @@ class ProductUpdateRequest extends FormRequest
             'seo_title'=>'nullable|max:200',
             'seo_description'=>'nullable|max:250',
 
+            //customization
+            'front_image' => 'nullable|file|mimes:jpg,jpeg,png,webp,avif|max:2048',
+            'back_image'  => 'nullable|file|mimes:jpg,jpeg,png,webp,avif|max:2048',
+            'is_customizable' => 'nullable|in:0,1',
+            'front_price' => 'nullable|numeric|min:0',
+            'back_price' => 'nullable|numeric|min:0',
+            'both_price' => 'nullable|numeric|min:0',
+
             //color image
-            'proColor'=>'array',
-            'color_image'=>'array',
+            'proColor'=>'nullable|array',
+            'color_image'=>'nullable|array',
             'proColor.*'=>'nullable|integer|exists:colors,id',
-            'color_image.*'=>'nullable|file|mimes:jpg,jpeg,png,webp,avif|max:2048|max:2048'
+            'color_image.*'=>'nullable|file|mimes:jpg,jpeg,png,webp,avif|max:2048'
         ];
     }
 }
