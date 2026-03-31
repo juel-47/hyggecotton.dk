@@ -22,7 +22,7 @@ class ProductCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required|image|max:5048',
+            'image' => 'required|mimes:jpg,jpeg,png,webp,avif|max:5048',
             'name' => 'required|max:200',
             'category' => 'required',
             // 'brand'=>'required',
@@ -36,15 +36,15 @@ class ProductCreateRequest extends FormRequest
             'meta_title' => 'nullable|max:200',
             'meta_description' => 'nullable|max:250',
             //customization
-            'front_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'back_image'  => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'front_image' => 'nullable|mimes:jpg,jpeg,png,webp,avif|max:2048',
+            'back_image'  => 'nullable|mimes:jpg,jpeg,png,webp,avif|max:2048',
             'is_customizable' => 'nullable|in:0,1',
             'front_price' => 'nullable|numeric|min:0',
             'back_price' => 'nullable|numeric|min:0',
             'both_price' => 'nullable|numeric|min:0',
             //color_image
             'proColor.*'=>'nullable|integer|exists:colors,id',
-            'color_image.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5048',
+            'color_image.*' => 'nullable|mimes:jpg,jpeg,png,webp,avif|max:5048',
         ];
     }
 }
