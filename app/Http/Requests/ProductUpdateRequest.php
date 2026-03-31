@@ -22,7 +22,7 @@ class ProductUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image'=>'mimes:jpg,jpeg,png,webp,avif|max:3000',
+            'image'=>'mimetypes:image/jpeg,image/png,image/webp,image/avif|max:3000',
             'name' => 'required|max:200',
             'category'=>'required',
             // 'brand'=>'required',
@@ -38,7 +38,7 @@ class ProductUpdateRequest extends FormRequest
             'proColor'=>'array',
             'color_image'=>'array',
             'proColor.*'=>'nullable|integer|exists:colors,id',
-            'color_image.*'=>'nullable|mimes:jpg,jpeg,png,webp,avif|max:2048'
+            'color_image.*'=>'nullable|mimetypes:image/jpeg,image/png,image/webp,image/avif|max:2048'
         ];
     }
 }
