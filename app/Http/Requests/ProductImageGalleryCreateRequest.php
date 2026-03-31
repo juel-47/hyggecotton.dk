@@ -23,7 +23,7 @@ class ProductImageGalleryCreateRequest extends FormRequest
     {
         return [
             // 'image' => 'required|mimes:jpg,jpeg,png,webp,avif|max:1048',
-            'image' => 'required|mimetypes:image/jpeg,image/png,image/webp,image/avif|max:1048',
+            'image' => 'required|file|mimes:jpg,jpeg,png,webp,avif|max:1048',
         ];
     }
 }
